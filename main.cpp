@@ -1,23 +1,17 @@
-/*Published under The MIT License (MIT)
-
-See LICENSE.TXT*/
-
-// Ryan Pridgeon COM2032 rp00091
-
 #include <cmath>
 #include <cstdlib>
-#ifdef _WIN32
-#include <Windows.h>
-#endif
-#include <gl\gl.h>
-#include <gl\glut.h>
-#include <GL\glu.h>
+//#ifdef _WIN32
+//#include <Windows.h>
+//#endif
+#include <GL/gl.h>
+#include <GL/glut.h>
+#include <GL/glu.h>
 
 #include "tga.h"
 #include "solarsystem.h"
 #include "camera.h"
 #include "globals.h"
-
+#include <stdio.h>
 // the screen size
 int screenWidth, screenHeight;
 
@@ -231,14 +225,26 @@ void display(void)
 }
 void keyDown(unsigned char key, int x, int y)
 {
+	if (key==0x1b){exit(0);}
+	//if(key=='1'){printf("Mercury\n");}
+	//if(key=='2'){printf("Venus\n");}
+	//if(key=='3'){printf("Earth\n");}
+	//if(key=='4'){printf("Mars\n");}
+	//if(key=='5'){printf("Jupiter\n");}
+	//if(key=='6'){printf("Saturn\n");}
+	//if(key=='7'){printf("Uranus\n");}
+	//if(key=='8'){printf("Neptune\n");}
+	//if(key=='9'){printf("Pluto\n");}
+//	printf("Key is %c %d\n",key,(int)key);
 	// check for numerical keys
 	if (key > '0' && key <= '9')
 	{
+	//printf("Key is %c %d\n",key,(int)key);
 		// point at the specified planet
 		float vec[3];
 		solarSystem.getPlanetPosition(key - '0', vec);
 		camera.pointAt(vec);
-
+//		printf("VECTOR %f - %f - %f \n", vec[0], vec[1], vec[2]);
 		// select that planet
 		planetSelected = key - '0';
 	}
@@ -264,6 +270,15 @@ void keyDown(unsigned char key, int x, int y)
 		break;
 	case 'm':
 		addMoon(); // add a moon to the selected planet
+		break;
+	case 't':
+		planetSizeScale = 0.000050f;
+		break;
+	case 'u':
+		timeSpeed = 0.10f;
+		break;
+	case 'v':
+		planetSizeScale = 0.0000050f;
 		break;
 	case 'r':
 		planetSizeScale = distanceScale;

@@ -1,0 +1,10 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+# compile files
+*.o
+
+#Subversion files
+.svn
+

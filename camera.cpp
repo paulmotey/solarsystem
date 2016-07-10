@@ -7,8 +7,8 @@ See LICENSE.TXT*/
 #ifdef _WIN32
 #include <Windows.h>
 #endif
-#include <gl\GL.h>
-#include <gl\GLU.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <cmath>
 #include "camera.h"
 
@@ -181,7 +181,7 @@ void Camera::forward(void)
 	// make a movement vector the right speed facing the forward direction
 	float vec[3];
 	vectorCopy(vec, forwardVec);
-	vectorMul(vec, cameraSpeed);
+	vectorMul(vec, cameraSpeed*10.0);
 
 	// add the movement vec to the position vec
 	vectorAdd(position, vec);
@@ -193,7 +193,7 @@ void Camera::backward(void)
 	// make a movement vector the right speed facing the backward direction
 	float vec[3];
 	vectorCopy(vec, forwardVec);
-	vectorMul(vec, -cameraSpeed); // -cameraSpeed for backwards
+	vectorMul(vec, -cameraSpeed*10.0); // -cameraSpeed for backwards
 
 	// add the movement vec to the position vec
 	vectorAdd(position, vec);
